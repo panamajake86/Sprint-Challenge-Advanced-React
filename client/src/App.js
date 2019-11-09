@@ -14,7 +14,7 @@ class App extends React.Component {
       .get('http://localhost:5000/api/players')
       .then(res => {
         console.log('didMount', res.data)
-        this.setState({ players: res.data})
+        this.setState({ players: res.data })
       })
       .catch(err => {
         console.log(err);
@@ -25,15 +25,20 @@ class App extends React.Component {
     console.log('render', this.state)
     return (
       <div className="App">
-        <h1>Women's World Cup Players</h1>
+        <div className='header'>
+        <p>Dark Mode</p>
         <DarkMode />
-        {this.state.players.map(ladies => {
-          return(<div className='players' key={ladies}>
-            <h3>{`Player: ${ladies.name}`}</h3>
-            <p>{`Country: ${ladies.country}`}</p>
-            <p>{`# of Searches ${ladies.searches}`}</p>
-          </div>)
-  })}
+        </div>
+        <h1>Women's World Cup Players</h1>
+        <div className='ladies'>
+          {this.state.players.map(ladies => {
+            return (<div className='players' key={ladies}>
+              <h3>{`Player: ${ladies.name}`}</h3>
+              <p>{`Country: ${ladies.country}`}</p>
+              <p>{`${ladies.searches} searches`}</p>
+            </div>)
+          })}
+        </div>
       </div>
     );
   }

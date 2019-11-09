@@ -59,3 +59,26 @@
 .toggled {
   left: 18px;
 }
+
+.header {
+    display: flex;
+    justify-content: left;
+  }
+
+.header p {
+  margin: 5px;
+}
+
+.ladies {
+  display: flex;
+  flex-wrap: wrap;
+
+  
+}
+
+.players {
+  border: 1px black solid;
+  margin: 15px;
+  padding: 10px;
+  width: 20%;
+}
