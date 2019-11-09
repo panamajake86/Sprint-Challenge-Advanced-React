@@ -5,14 +5,16 @@ import axios from 'axios';
 class App extends React.Component {
 
   state = {
-    players: {},
+    players: [],
   };
 
   componentDidMount() {
     axios
       .get('http://localhost:5000/api/players')
-      .then(res => console.log('didMount', res))
-      .then(res => this.setState({ players: res }))
+      .then(res => {
+        console.log('didMount', res.data)
+        this.setState({ players: res.data})
+      })
       .catch(err => {
         console.log(err);
       });
@@ -23,13 +25,13 @@ class App extends React.Component {
     return (
       <div className="App">
         <h1>Women's World Cup Players</h1>
-        {/* {this.state.players.map(ladies => {
-          <div className='players' key={ladies}>
-            <h3>{`Player: ${this.state.players.name}`}</h3>
-            <p>{`Country: ${this.state.players.country}`}</p>
-            <p>{`# of Searches ${this.state.players.searches}`}</p>
-          </div>
-        })} */}
+        {this.state.players.map(ladies => {
+          return(<div className='players' key={ladies}>
+            <h3>{`Player: ${ladies.name}`}</h3>
+            <p>{`Country: ${ladies.country}`}</p>
+            <p>{`# of Searches ${ladies.searches}`}</p>
+          </div>)
+  })}
       </div>
     );
   }
